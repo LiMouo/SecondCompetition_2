@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context="limou.com.TripHome.TripActivity">
+
+    <limou.com.ToolsHome.SecondTitleTools
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/trip_date"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019年11月29日"
+            android:textSize="25dp"
+            android:textColor="#000"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:gravity="center"
+
+                android:text="单号出行车辆"/>
+            <TextView
+                android:gravity="center|left"
+                android:background="@drawable/show_money"
+                android:textColor="#fff"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="18dp"
+                />
+            <TextView
+                android:gravity="center|left"
+                android:background="@drawable/show_money"
+                android:textColor="#fff"
+                android:layout_marginLeft="5dp"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="2"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textColor="#fff"
+                android:background="@drawable/show_money"
+                android:gravity="center|left"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_margin="20dp"
+        android:background="#FFFFFF"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="80dp"
+            >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="出行车辆设置"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小车编号：1 号"
+                    android:textSize="16dp"
+                    />
+                <Switch
+                    android:id="@+id/s_one"
+                    android:layout_width="wrap_content"
+                    android:textOn="停"
+                    android:textOff="开"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
+                    android:showText="true"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小车编号：2 号"
+                    android:textSize="16dp"
+                    />
+                <Switch
+                    android:id="@+id/s_two"
+                    android:layout_width="wrap_content"
+                    android:textOn="停"
+                    android:textOff="开"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
+                    android:showText="true"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小车编号：3 号"
+                    android:textSize="16dp"
+                    />
+                <Switch
+                    android:id="@+id/s_three"
+                    android:layout_width="wrap_content"
+                    android:textOn="停"
+                    android:textOff="开"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/thumb"
+                    android:track="@drawable/track"
+                    android:showText="true"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="205dp"
+                android:background="@drawable/trip_xml"
+                android:gravity="center|top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/light_red"
+                    android:layout_width="45dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trip_red_backcolor" />
+
+                <TextView
+                    android:id="@+id/light_yellow"
+                    android:layout_width="45dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trip_yellow_backcolor" />
+
+                <TextView
+                    android:id="@+id/light_greed"
+                    android:layout_width="45dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/trip_green_backcolor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="205dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/trip_xml"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/text_red"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/tirp_togglebutton_red"
+                    android:checked="true"
+                    android:textOff="@null"
+                    android:textOn="@null" />
+
+                <ToggleButton
+                    android:id="@+id/text_yellow"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/tirp_togglebutton_yellow"
+                    android:textOff="@null"
+                    android:textOn="@null" />
+
+                <ToggleButton
+                    android:id="@+id/text_green"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/tirp_togglebutton_green"
+                    android:textOff="@null"
+                    android:textOn="@null" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
