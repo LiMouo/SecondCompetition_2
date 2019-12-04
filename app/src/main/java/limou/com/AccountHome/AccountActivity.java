@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import limou.com.ToolsHome.MyDialog;
 import limou.com.ToolsHome.SecondTitleTools;
 import limou.com.secondcompetition.R;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements View.OnClickListener{
     private static String[] car_id = {"1", "2", "3", "4"};
     private static String[] car_plate = {"辽A10001", "渝A10002", "川A10003", "古A10004"};
     private static String[] car_name = {"张三", "李四", "高亮", "三国"};
@@ -35,6 +36,7 @@ public class AccountActivity extends AppCompatActivity {
     private List<Map<String, String>> listdata;
     private Map<String,String> map;
     private MyDialog myDialog;
+    private Button btn_save,btn_cancel;
 
 
     @Override
@@ -69,7 +71,8 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        myDialog = new MyDialog(this,0.4,1.0,R.layout.accountmanager_dialog);
+        myDialog = new MyDialog(this,0.8,1.0,R.layout.accountmanager_dialog);
+
 
         SecondTitleTools.setTitle("账户管理");
         SecondTitleTools.MenuCreate();
@@ -87,12 +90,31 @@ public class AccountActivity extends AppCompatActivity {
                 myDialog.Do(new MyDialog.DoSomeThing() {
                     @Override
                     public void Do(Dialog v) {
-                        Toast.makeText(AccountActivity.this, "???", Toast.LENGTH_SHORT).show();
+                        btn_save = myDialog.findViewById(R.id.btn_save);
+                        btn_cancel = myDialog.findViewById(R.id.btn_cancel);
+                        btn_save.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(AccountActivity.this, "????", Toast.LENGTH_SHORT).show();
+                                myDialog.dismiss();
+                            }
+                        });
+                        btn_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                myDialog.dismiss();
+                            }
+                        });
                     }
                 }).show();
             }
         });
 
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 
