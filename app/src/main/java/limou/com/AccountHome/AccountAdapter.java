@@ -2,6 +2,7 @@ package limou.com.AccountHome;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import limou.com.secondcompetition.R;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountAdapterHolder> {
 
     private Context mContext;
+    public List<Map<String, String>> listdata;
+    public static List<String> car_id;
+    public static List<String> car_plate;
+    public static Map<String,String> map;
 
-    public AccountAdapter(Context mContext) {
+    public AccountAdapter(Context mContext, List<Map<String, String>> list) {
         this.mContext = mContext;
+        this.listdata = list;
+        car_id = new ArrayList<>();
+        car_plate = new ArrayList<>();
     }
 
     @NonNull
@@ -34,12 +46,16 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
 
     @Override
     public void onBindViewHolder(@NonNull AccountAdapterHolder holder, int position) {
+        map = listdata.get(position);
+        holder.item_carId.setText(map.get("item_carId"));
+        holder.item_plate.setText(map.get("item_plate"));
+        holder.item_carName.setText(map.get("item_carName"));
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listdata.size();
     }
 
     class AccountAdapterHolder extends RecyclerView.ViewHolder{

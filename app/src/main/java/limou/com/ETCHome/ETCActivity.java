@@ -175,24 +175,34 @@ public class ETCActivity extends AppCompatActivity {
                     json.put("UserName", "user1");
                     OKHttpJson.SendOKHttp(url,mediaType,json);
                     Gson gson = new Gson();
-                    etcGson1 = gson.fromJson(OKHttpJson.JsonObjectRead().toString(), ETCGson.class);
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try{
-                                if (etcGson1.getERRMSG().equals("成功")){
-                                    money = String.valueOf(etcGson1.getBalance());
-                                    show_money.setText(money);
-                                    Toast.makeText(ETCActivity.this, "查询成功", Toast.LENGTH_SHORT).show();
-                                    in_money.setText("");
-                                }else {
-                                    Toast.makeText(ETCActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
-                                }
-                            }catch (Exception e){
-                                e.printStackTrace();
+
+                    if(OKHttpJson.JsonObjectRead() == null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(ETCActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    });
+                        });
+                    }else {
+                        etcGson1 = gson.fromJson(OKHttpJson.JsonObjectRead().toString(), ETCGson.class);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try{
+                                    if (etcGson1.getERRMSG().equals("成功")){
+                                        money = String.valueOf(etcGson1.getBalance());
+                                        show_money.setText(money);
+                                        Toast.makeText(ETCActivity.this, "查询成功", Toast.LENGTH_SHORT).show();
+                                        in_money.setText("");
+                                    }else {
+                                        Toast.makeText(ETCActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

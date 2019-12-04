@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +13,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import limou.com.MyDecoration.MyDecoration;
+import limou.com.ToolsHome.MyDialog;
 import limou.com.ToolsHome.SecondTitleTools;
 import limou.com.secondcompetition.R;
 
@@ -25,24 +32,44 @@ public class AccountActivity extends AppCompatActivity {
     private AccountAdapter adapter;
     private RecyclerView account_recycle;
 
+    private List<Map<String, String>> listdata;
+    private Map<String,String> map;
+    private MyDialog myDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InitView();
+        InitData();
         setRecycler();
+    }
+
+    private void InitData() {
+        listdata = new ArrayList<>();
+        for (int i =0;i<car_id.length;i++){
+            map = new HashMap<>();
+            map.put("item_carId", car_id[i]);
+            map.put("item_carIog", String.valueOf(item_carIog[i]));
+            map.put("item_plate", car_plate[i]);
+            map.put("item_carName", car_name[i]);
+            listdata.add(map);
+        }
     }
 
     private void setRecycler() {
         account_recycle = findViewById(R.id.account_recycler);
         account_recycle.setLayoutManager(new GridLayoutManager(this,1));
         account_recycle.addItemDecoration(new MyDecoration());
-        adapter = new AccountAdapter(this);
+        adapter = new AccountAdapter(this,listdata);
         account_recycle.setAdapter(adapter);
     }
 
     private void InitView() {
         setContentView(R.layout.activity_account);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        myDialog = new MyDialog(this,0.4,1.0,R.layout.accountmanager_dialog);
 
         SecondTitleTools.setTitle("账户管理");
         SecondTitleTools.MenuCreate();
@@ -57,9 +84,16 @@ public class AccountActivity extends AppCompatActivity {
         SecondTitleTools.btn_inMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AccountActivity.this, "2", Toast.LENGTH_SHORT).show();
+                myDialog.Do(new MyDialog.DoSomeThing() {
+                    @Override
+                    public void Do(Dialog v) {
+                        Toast.makeText(AccountActivity.this, "???", Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
             }
         });
+
+
     }
 
 
