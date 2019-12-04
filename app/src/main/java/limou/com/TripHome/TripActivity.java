@@ -30,7 +30,11 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
     private TextView trip_date;
     private static String TAG = "TripActivity";
     private int[] toggleButtonsId = {R.id.text_red, R.id.text_yellow, R.id.text_green};
+    private int[] swButton = {R.id.s_one,R.id.s_two,R.id.s_three};
+    private int[] tvNumber = {R.id.num_1,R.id.num_2,R.id.num_3};
     private List<ToggleButton> listToggleButton;
+    private List<Switch> listSwButton;
+    private List<TextView> listTextView;
     private Handler handler = new Handler();
 
     @Override
@@ -70,6 +74,7 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
         }).start();
     }
 
+    //红绿灯
     private void setToggle(int finalI) {
         switch (finalI) {
             case 0:
@@ -112,9 +117,24 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
         SecondTitleTools.setTitle("出行管理");
         SecondTitleTools.MenuCreate();
 
+        listSwButton = new ArrayList<>();
+        listTextView = new ArrayList<>();
+
+        listSwButton.add((Switch) findViewById(R.id.s_one));
+        listSwButton.add((Switch) findViewById(R.id.s_two));
+        listSwButton.add((Switch) findViewById(R.id.s_two));
+
+        listTextView.add((TextView) findViewById(R.id.num_1));
+        listTextView.add((TextView) findViewById(R.id.num_2));
+        listTextView.add((TextView) findViewById(R.id.num_3));
+
+
         trip_date = findViewById(R.id.trip_date);
         trip_date.setOnClickListener(this);
 
+
+
+        setData(getdate(),getDay());
     }
 
     /**
@@ -137,16 +157,42 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         Log.d(TAG, "onDateSet: ");
                         final String date = year + "年" + (month+1) + "月" + dayOfMonth + "日";
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                trip_date.setText(date);
-                            }
-                        });
+                        setData(date,dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
                 pickerDialog.show();
                 break;
+        }
+    }
+
+    private void setData(String date, int dayOfMonth) {
+        trip_date.setText(date);
+        Log.e(TAG, "日期: " + dayOfMonth); //当前日期
+        if (dayOfMonth %2 == 0){
+            //双号
+            listTextView.get(0).setVisibility(View.GONE);
+            listSwButton.get(0).setChecked(false);
+            listSwButton.get(0).setEnabled(false);
+
+            listTextView.get(1).setVisibility(View.VISIBLE);
+            listSwButton.get(1).setChecked(true);
+            listSwButton.get(1).setEnabled(true);
+
+            listTextView.get(2).setVisibility(View.GONE);
+            listSwButton.get(2).setChecked(false);
+            listSwButton.get(2).setEnabled(false);
+        }else {
+            listTextView.get(0).setVisibility(View.GONE);
+            listSwButton.get(0).setChecked(false);
+            listSwButton.get(0).setEnabled(false);
+
+            listTextView.get(1).setVisibility(View.VISIBLE);
+            listSwButton.get(1).setChecked(true);
+            listSwButton.get(1).setEnabled(true);
+
+            listTextView.get(2).setVisibility(View.VISIBLE);
+            listSwButton.get(2).setChecked(true);
+            listSwButton.get(2).setEnabled(true);
         }
     }
 
@@ -156,15 +202,10 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
     private void InitSwitch() {
         final Switch mSwitch = findViewById(R.id.s_one);
         mSwitch.setChecked(false);
-        mSwitch.setSwitchTextAppearance(TripActivity.this, R.style.s_false);
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mSwitch.setSwitchTextAppearance(TripActivity.this, R.style.s_true);
-                } else {
-                    mSwitch.setSwitchTextAppearance(TripActivity.this, R.style.s_false);
-                }
+
             }
         });
     }
@@ -175,5 +216,13 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
         String time = format.format(date);
         Log.e(TAG, "得到时间: " + time);
         return time;
+    }
+    private static int getDay() {
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd");
+        String time = format.format(date);
+        int day = Integer.parseInt(time);
+        Log.e(TAG, "得到时间: " + time);
+        return day;
     }
 }

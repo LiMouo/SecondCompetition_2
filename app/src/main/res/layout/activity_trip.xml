@@ -43,6 +43,7 @@
 
                 android:text="单号出行车辆"/>
             <TextView
+                android:id="@+id/num_1"
                 android:gravity="center|left"
                 android:background="@drawable/show_money"
                 android:textColor="#fff"
@@ -53,6 +54,7 @@
                 android:textSize="18dp"
                 />
             <TextView
+                android:id="@+id/num_2"
                 android:gravity="center|left"
                 android:background="@drawable/show_money"
                 android:textColor="#fff"
@@ -63,6 +65,7 @@
 
                 android:text="2"/>
             <TextView
+                android:id="@+id/num_3"
                 android:layout_marginLeft="5dp"
                 android:textColor="#fff"
                 android:background="@drawable/show_money"
