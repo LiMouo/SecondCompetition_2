@@ -24,6 +24,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import limou.com.AccountHome.AccountActivity;
+import limou.com.ETCHome.ETCActivity;
 import limou.com.EnvironCatalog.EnvironActivity_2;
 import limou.com.MainActivity;
 import limou.com.ThresholdsCatalog.ThresholdsActivity;
@@ -43,6 +45,7 @@ public class SecondTitleTools extends LinearLayout {
     private static String TAG = "EnvironActivity";
     private static Handler handler = new Handler();
     private static Thread t1;
+    public static Button btn_account, btn_inMoney, btn_Record;
 
     public SecondTitleTools(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -73,6 +76,10 @@ public class SecondTitleTools extends LinearLayout {
         toolbar = findViewById(R.id.second_toolbar);
         toolbar.setNavigationIcon(R.drawable.menu);
         title = findViewById(R.id.Second_Title_Toolbar);
+        btn_account = findViewById(R.id.btn_account);
+        btn_inMoney = findViewById(R.id.btn_inMoney);
+        btn_Record = findViewById(R.id.btn_Record);
+
         spinner = findViewById(R.id.sp_Second_Title_Network);
     }
 
@@ -88,7 +95,11 @@ public class SecondTitleTools extends LinearLayout {
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent;
                         switch (item.getItemId()){
-                            case R.id.menu_main:
+                            case R.id.menu_Etc:
+                                intent = new Intent(mContext, ETCActivity.class);
+                                Toast.makeText(mContext,"页面已跳转至 ETC", Toast.LENGTH_SHORT).show();
+                                mContext.startActivity(intent);
+                                break;                            case R.id.menu_main:
                                 intent = new Intent(mContext, MainActivity.class);
                                 Toast.makeText(mContext,"页面已跳转至 主页面", Toast.LENGTH_SHORT).show();
                                 mContext.startActivity(intent);
@@ -129,6 +140,17 @@ public class SecondTitleTools extends LinearLayout {
             public void onClick(View v) {
                 Activity activity = (Activity) mContext;
                 activity.finish();
+            }
+        });
+    }
+
+    public static void  setAccount(){
+        btn_account.setVisibility(VISIBLE);
+        btn_account.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AccountActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }

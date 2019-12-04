@@ -204,6 +204,7 @@ public class ETCActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         SecondTitleTools.setTitle("我的账户");
         SecondTitleTools.MenuCreate();
+        SecondTitleTools.setAccount();
         billMaster = new SQLiteBillMaster(this, "Bill.db");
         db = billMaster.getWritableDatabase();
     }

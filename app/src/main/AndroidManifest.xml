@@ -12,15 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name="limou.com.ETCHome.ETCActivity"
+        <activity android:name="limou.com.AccountHome.AccountActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             ></activity>
-        <activity android:name="limou.com.TripHome.TripActivity"
+        <activity
+            android:name="limou.com.ETCHome.ETCActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            ></activity>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="limou.com.TripHome.TripActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
         <activity
             android:name="limou.com.RealTimeHome.RealTimeActivity"
             android:launchMode="singleTask"

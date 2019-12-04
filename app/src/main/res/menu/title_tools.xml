@@ -6,6 +6,11 @@
         android:title="RecyclerView"/>
 
     <item
+        android:id="@+id/menu_Etc"
+        android:title="ETC"
+        />
+
+    <item
         android:id="@+id/menu_Environ"
         android:title="Environ"/>
 
