@@ -16,8 +16,10 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import limou.com.ToolsHome.SecondTitleTools;
@@ -26,7 +28,7 @@ import limou.com.secondcompetition.R;
 public class TripActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView trip_date;
-    private String TAG = "TripActivity";
+    private static String TAG = "TripActivity";
     private int[] toggleButtonsId = {R.id.text_red, R.id.text_yellow, R.id.text_green};
     private List<ToggleButton> listToggleButton;
     private Handler handler = new Handler();
@@ -134,7 +136,7 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         Log.d(TAG, "onDateSet: ");
-                        final String date = year + "年" + month + "月" + dayOfMonth + "日";
+                        final String date = year + "年" + (month+1) + "月" + dayOfMonth + "日";
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -165,5 +167,13 @@ public class TripActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+    }
+
+    private static String getdate() {
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        String time = format.format(date);
+        Log.e(TAG, "得到时间: " + time);
+        return time;
     }
 }
