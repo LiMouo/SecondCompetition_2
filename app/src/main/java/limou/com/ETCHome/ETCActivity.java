@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 
-import limou.com.Recyclerview.R;
+import limou.com.NetworkHome.OKHttpJson;
 import limou.com.SQLiteCatalog.SQLiteBillMaster;
 import limou.com.ToolsHome.SecondTitleTools;
 import limou.com.secondcompetition.R;
@@ -55,7 +55,7 @@ public class ETCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.);
+        setContentView(R.layout.activity_etc);
         InitView();
         setToolbar(); /*设置查询车辆*/
         queryMoney(); /*查询余额*/
@@ -118,13 +118,13 @@ public class ETCActivity extends AppCompatActivity {
                         json.put("CarId", count);
                         json.put("Money", in_money.getText().toString());
                         json.put("UserName", "user1");
-                        OkHttpJson.SendOkHttp(url, json, mediaType);
+                        OKHttpJson.SendOKHttp(url, mediaType,json);
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     Gson gson = new Gson();
-                                    etcGson = gson.fromJson(OkHttpJson.JsonObjectRead().toString(), ETCGson.class);
+                                    etcGson = gson.fromJson(OKHttpJson.JsonObjectRead().toString(), ETCGson.class);
                                     if (etcGson.getERRMSG().equals("成功")) {
                                         Toast.makeText(ETCActivity.this, "充值成功", Toast.LENGTH_SHORT).show();
                                         queryMoney();
@@ -139,13 +139,13 @@ public class ETCActivity extends AppCompatActivity {
                                     } else {
                                         Toast.makeText(ETCActivity.this, "充值失败 请检查充值金额 或 网络", Toast.LENGTH_SHORT).show();
                                     }
-                                    if (OkHttpJson.JsonObjectRead().get("status").toString().equals("500")) {
-                                        Toast.makeText(ETCActivity.this, "请求失败" + OkHttpJson.JsonObjectRead().get("status").toString(), Toast.LENGTH_SHORT).show();
+                                    if (OKHttpJson.JsonObjectRead().get("status").toString().equals("500")) {
+                                        Toast.makeText(ETCActivity.this, "请求失败" + OKHttpJson.JsonObjectRead().get("status").toString(), Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     try {
-                                        Toast.makeText(ETCActivity.this, "请求失败  " + OkHttpJson.JsonObjectRead().get("status").toString(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ETCActivity.this, "请求失败  " + OKHttpJson.JsonObjectRead().get("status").toString(), Toast.LENGTH_SHORT).show();
                                     } catch (JSONException ex) {
                                         ex.printStackTrace();
                                     }
@@ -173,9 +173,9 @@ public class ETCActivity extends AppCompatActivity {
                 try {
                     json.put("CarId", String.valueOf(count));
                     json.put("UserName", "user1");
-                    OkHttpJson.SendOkHttp(url,json,mediaType);
+                    OKHttpJson.SendOKHttp(url,mediaType,json);
                     Gson gson = new Gson();
-                    etcGson1 = gson.fromJson(OkHttpJson.JsonObjectRead().toString(), ETCGson.class);
+                    etcGson1 = gson.fromJson(OKHttpJson.JsonObjectRead().toString(), ETCGson.class);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
