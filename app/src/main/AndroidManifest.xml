@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name="limou.com.ETCHome.ETCActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            ></activity>
         <activity android:name="limou.com.TripHome.TripActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
