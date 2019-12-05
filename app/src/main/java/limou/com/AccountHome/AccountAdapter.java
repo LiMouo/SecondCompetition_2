@@ -33,6 +33,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
     public static Map<String,String> map;
     public static onCheck onCheck;
     public static onClick onClick;
+    private String TAG = "AccountActivity";
 
     public AccountAdapter(Context mContext, List<Map<String, String>> list,onClick onClick,onCheck onCheck) {
         this.mContext = mContext;
@@ -52,9 +53,11 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
     @Override
     public void onBindViewHolder(@NonNull AccountAdapterHolder holder, final int position) {
         map = listdata.get(position);
+        Log.e(TAG, "list: " + map.toString());
         holder.item_carId.setText(map.get("item_carId"));
         holder.item_plate.setText(map.get("item_plate"));
         holder.item_carName.setText(map.get("item_carName"));
+        holder.item_carMoney.setText(map.get("item_carMoney"));
 
         holder.item_carCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -65,7 +68,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
         holder.item_btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick.onClick(position);
+                onClick.onClick(position,v);
             }
         });
     }
@@ -96,7 +99,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
     }
 
     public interface onClick{
-        void onClick(int position);
+        void onClick(int position,View v);
     }
     public interface onCheck{
         void onCheck(CompoundButton buttonView,boolean isChecked,int position);
