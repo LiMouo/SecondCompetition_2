@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,10 +31,14 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
     public static List<String> car_id;
     public static List<String> car_plate;
     public static Map<String,String> map;
+    public static onCheck onCheck;
+    public static onClick onClick;
 
-    public AccountAdapter(Context mContext, List<Map<String, String>> list) {
+    public AccountAdapter(Context mContext, List<Map<String, String>> list,onClick onClick,onCheck onCheck) {
         this.mContext = mContext;
         this.listdata = list;
+        this.onCheck = onCheck;
+        this.onClick = onClick;
         car_id = new ArrayList<>();
         car_plate = new ArrayList<>();
     }
@@ -45,11 +50,24 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AccountAdapterHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AccountAdapterHolder holder, final int position) {
         map = listdata.get(position);
         holder.item_carId.setText(map.get("item_carId"));
         holder.item_plate.setText(map.get("item_plate"));
         holder.item_carName.setText(map.get("item_carName"));
+
+        holder.item_carCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                onCheck.onCheck(buttonView,isChecked,position);
+            }
+        });
+        holder.item_btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onClick(position);
+            }
+        });
     }
 
 
@@ -75,5 +93,12 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountA
             item_btn_submit = itemView.findViewById(R.id.item_btn_submit); /*提交*/
             lout = itemView.findViewById(R.id.lout); /*提交*/
         }
+    }
+
+    public interface onClick{
+        void onClick(int position);
+    }
+    public interface onCheck{
+        void onCheck(CompoundButton buttonView,boolean isChecked,int position);
     }
 }
